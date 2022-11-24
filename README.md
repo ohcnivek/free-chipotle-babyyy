@@ -14,7 +14,7 @@ I mean... how crappy is that??
 
 So I wrote this small script to help us who aren't as swifty on the keyboard (or prefers to not turn on notifications for Twitter lol).
 
-### Getting Started
+## Getting Started
 
 1. Clone repo: `git clone git@github.com:ohcnivek/free-chipotle-babyyy.git`
 
@@ -43,7 +43,7 @@ TWILIO_NUMBER = '+1XXXXXXXXXX'
 
 ### Background
 
-## Twitter API
+#### Twitter API
 This script uses Twilio + Twitter's developer API. To get set up, you'll need a general understanding of how streams work (specifically for Twitter in our case).
 
 Long story short, imagine this stream is a real-time firehose of data (tweets) from Twitter that is feeding into our app. Now without any filters that would be way too many tweets for us to consume & do anything useful.
@@ -56,7 +56,7 @@ To add these filters (aka rules), use `twitter_data_stream.add_or_delete_rule(bo
 
 Check out more about Twitter's filtered stream [here!](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/introduction)
 
-## Heuristic for finding promo code in the tweet 
+### Heuristic for finding promo code in the tweet 
 I just looked for words in the tweet that's either all caps or just numbers of even better both lol :) 
 
 Once you successfuly:

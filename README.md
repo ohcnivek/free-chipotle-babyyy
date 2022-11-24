@@ -18,26 +18,22 @@ So I wrote this small script to help us who aren't as swifty on the keyboard (or
 
 1. Clone repo: `git clone git@github.com:ohcnivek/free-chipotle-babyyy.git`
 
-2. Create a .env file w/ the following + populate w/ approporiate values from Twilio + Twitter developer accounts (both are free to set up):
+2. Create a .env file w/ the following + populate w/ approporiate values from Twilio + Twitter developer accounts (both are free to set up). Make sure to not add @ for the twitter handle.
 
 ```
 TWILIO_ACCOUNT_SID=XXX
 TWILIO_AUTH_TOKEN=XXX
+TWILIO_NUMBER = '+1XXXXXXXXXX'
 
 TWITTER_API_KEY=XXX
 TWITTER_API_KEY_SECRET=XXX
 TWITTER_BEARER_TOKEN=XXX
-```
 
-3. In `main.py`, follow the comments & populate these constants with approporiate values.
-
-```
 TEST_TWITTER_HANDLE = 'XXXXXXXX'
 TEST_NUMBER = '+1XXXXXXXXXX'
-TWILIO_NUMBER = '+1XXXXXXXXXX'
 ```
 
-4. 🎊 Congrats - You're set up to test!
+3. 🎊 Congrats - You're set up to test!
 
 ## Testing
 
@@ -50,7 +46,7 @@ Long story short, imagine this stream is a real-time firehose of data (tweets) f
 
 So, we add filters -- in our case, we filter on the condition that it's a tweet from @ChipotleTweets.
 
-Now obviously, since we can't test using @ChipotleTweets, we can instead filter using our own twitter account (`TEST_TWITTER_HANDLE` in `main.py`) for now.
+Now obviously, since we can't test using @ChipotleTweets, we can instead filter using our own twitter account (`TEST_TWITTER_HANDLE` in `.env + main.py`) for now.
 
 To add these filters (aka rules), use `twitter_data_stream.add_or_delete_rule(body)`. I've included some examples in `main.py` to help get set up.
 

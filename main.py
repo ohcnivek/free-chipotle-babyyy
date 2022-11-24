@@ -37,6 +37,7 @@ class Logger:
     def got_effed(exception_):
         print(exception_)
 
+
 class TwilioClient: 
     def __init__(self):
         load_dotenv()
@@ -44,9 +45,11 @@ class TwilioClient:
         self.auth_token = os.environ['TWILIO_AUTH_TOKEN']
         self.client = Client(self.account_sid, self.auth_token)
 
+
     def send_message(self, body, from_num:str, to_num:str):
         message = self.client.messages.create(body=body, from_=from_num, to=to_num)
         Logger.info('TwilioClient', 'send_message', 'Successfully sent message, "{body}" ,  to to {to_num} from {from_num}'.format(body=body, to_num=to_num, from_num=from_num))
+        
         
     def send_batch_messages(self, batch:typing.List[str], from_num:str, to_num:str):
         Logger.info('TwilioClient', 'send_batch_messages','Sending batch message to {to_num} from {from_num}'.format(to_num=to_num, from_num=from_num))
@@ -122,7 +125,7 @@ class Parser:
             word_contains_num = Parser._contains_number(word)
             word_contains_char = Parser._contains_char(word)
             
-            # probably an emoji or something
+            # probably an emoji or something? idk
             if (not word_contains_char and not word_contains_num):
                 continue
             
@@ -140,7 +143,7 @@ class Parser:
             if (word_contains_num):
                 if (word.isdigit()):
                     candidates.append(word)
-
+                    
         return candidates
 
 
@@ -158,23 +161,25 @@ class Parser:
                 return index
         return -1 
 
+
 def main():
     twitter_data_stream = TwitterDataStream()
     twilio_client = TwilioClient()
 
-    ## TESTING: ADDING STREAM RULE -- filtering by tweets from @YOUR-OWN_TWITTER-HANDLE
-    # body = {"add": [{"value": "from:{handle}", "tag": "tweets from @{handle}".format(TEST_TWITTER_HANDLE)}]}
-    # twitter_data_stream.add_or_delete_rule(body)
+    ### TESTING: ADDING STREAM RULE -- filtering by tweets from @YOUR-OWN_TWITTER-HANDLE
+    body = {"add": [{"value": "from:{handle}", "tag": "tweets from @{handle}".format(TEST_TWITTER_HANDLE)}]}
+    twitter_data_stream.add_or_delete_rule(body)
     
-    ## DELETE TEST STREAM RULE (can use id from .get_rules() response)
-    # body = {'delete': {'ids': ['1594932432863727617']}}
+    ### DELETE TEST STREAM RULE (can use id from .get_rules() response)
+    # twitter_data_stream.get_rules() 
+    # body = {'delete': {'ids': ['XXXXXXXXXXXXXXXXX']}}
     # twitter_data_stream.add_or_delete_rule(body)
 
-    ## ADDING STREAM RULE -- filtering by tweets from @chiptoleTweets
+    ### ADDING STREAM RULE -- filtering by tweets from @chiptoleTweets
     # body = {"add": [{"value": "from:{handle}", "tag": "tweets from @{handle}".format(CHIPOTLE_TWITTER_HANDLE)}]}
     # twitter_data_stream.add_or_delete_rule(body)
 
-    # GET CURRENT STREAM RULES
+    ### GET CURRENT STREAM RULES + START STREAMIN!!!
     twitter_data_stream.get_rules()
     twitter_data_stream.digest_tweet_stream(twilio_client)
 

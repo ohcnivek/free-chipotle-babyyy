@@ -10,9 +10,9 @@ But then... this happend:
 
 <blockquote class="twitter-tweet" data-conversation="none" data-theme="light"><p lang="en" dir="ltr">I literally texted the second the code came out and didn&#39;t get it. How is that possible!?!?</p>&mdash; Josh Kitchen (@JoshuaKitchen4) <a href="https://twitter.com/JoshuaKitchen4/status/1594778716638355456?ref_src=twsrc%5Etfw">November 21, 2022</a></blockquote>
 
-I mean.. how shitty is that??
+I mean... how crappy is that??
 
-So I wrote this small script to help those of us who aren't as swift on the keyboard.
+So I wrote this small script to help us who aren't as swifty on the keyboard (or prefers to not turn on notifications for Twitter lol).
 
 ### Getting Started
 

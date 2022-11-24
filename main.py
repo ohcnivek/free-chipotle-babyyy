@@ -6,10 +6,13 @@ import json
 import ast
 import typing
 
-### Add your twitter handle + your own phone number + your twilio number here.
-TEST_TWITTER_HANDLE = 'certifiedaf' 
-TEST_NUMBER = '+16786628359'
-TWILIO_NUMBER = '+13466372768'
+### FOR TESTING: Add your:
+# - twitter handle (do not include the @)
+# - phone number (prefix with +1)
+# - twilio number here.
+TEST_TWITTER_HANDLE = 'XXXXXXXX' 
+TEST_NUMBER = '+1XXXXXXXXXX'
+TWILIO_NUMBER = '+1XXXXXXXXXX'
 ###
 
 CHIPOTLE_TWITTER_HANDLE = 'ChipotleTweets'

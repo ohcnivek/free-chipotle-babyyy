@@ -123,6 +123,5 @@ Woohoo!
 2. Leave it running during the game! (i actually need to check if this is ok w/ the rates on the twitter's api but it should prob be fine)
 3. Worst case: have the twiliio number text you & you can immedidately text chipotle @ 888222 the promo code :) 
 
-Also, don't abuse this script. This was for fun & I have no gurantee that this will work. I just love Chipotle & Twitter & thought it would be a fun lil script to spin up ❤️
-
+Also, don't abuse this script. This was for fun & I have no gurantee that this will work. I just love Chipotle & Twitter & thought it would be a fun lil script to spin up ❤️ Gift some potle to your loved ones this holiday szn :)
 

@@ -51,13 +51,13 @@ class TwilioClient:
         Logger.info('TwilioClient', 'send_message', 'Successfully sent message, "{body}" ,  to to {to_num} from {from_num}'.format(body=body, to_num=to_num, from_num=from_num))
         
         
-    def send_batch_messages(self, batch:typing.List[str], from_num:str, to_num:str):
-        Logger.info('TwilioClient', 'send_batch_messages','Sending batch message to {to_num} from {from_num}'.format(to_num=to_num, from_num=from_num))
+    def send_batch_of_messages(self, batch:typing.List[str], from_num:str, to_num:str):
+        Logger.info('TwilioClient', 'send_batch_of_messages','Sending batch message to {to_num} from {from_num}'.format(to_num=to_num, from_num=from_num))
         for message in batch:
             try:
                 self.send_message(message, from_num, to_num)
             except Exception as e:
-                Logger.info('TwilioClient', 'send_batch_messages', 'Something went wrong sending {message}'.format(message=message))
+                Logger.info('TwilioClient', 'send_batch_of_messages', 'Something went wrong sending {message}'.format(message=message))
                 Logger.got_effed(e)
                         
 
@@ -106,10 +106,10 @@ class TwitterDataStream:
                     candidates = Parser.generate_candidates(tweet_body_text)
                     if (candidates):
                         # COMENT OUT LINE BELOW WHILE TESTING
-                        # twilio_client.send_batch_messages(candidates, TWILIO_NUMBER, CHIPOTLE_NUMBER)
+                        # twilio_client.send_batch_of_messages(candidates, TWILIO_NUMBER, CHIPOTLE_NUMBER)
                         
                         # COMMENT OUT LINE BELOW AFTER TESTING
-                        twilio_client.send_batch_messages(candidates, TWILIO_NUMBER, TEST_NUMBER)
+                        twilio_client.send_batch_of_messages(candidates, TWILIO_NUMBER, TEST_NUMBER)
                 except Exception as e: 
                     Logger.info('TwitterDataStream', 'digest_tweet_stream', "shit hit the fan pt.2" )
                     Logger.got_effed(e)
@@ -167,8 +167,8 @@ def main():
     twilio_client = TwilioClient()
 
     ### TESTING: ADDING STREAM RULE -- filtering by tweets from @YOUR-OWN_TWITTER-HANDLE
-    body = {"add": [{"value": "from:{handle}", "tag": "tweets from @{handle}".format(TEST_TWITTER_HANDLE)}]}
-    twitter_data_stream.add_or_delete_rule(body)
+    # body = {"add": [{"value": "from:{handle}", "tag": "tweets from @{handle}".format(TEST_TWITTER_HANDLE)}]}
+    # twitter_data_stream.add_or_delete_rule(body)
     
     ### DELETE TEST STREAM RULE (can use id from .get_rules() response)
     # twitter_data_stream.get_rules() 

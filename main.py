@@ -56,7 +56,7 @@ class TwilioClient:
                     number to send message to (Chipotle's number)
         '''
         message = self.client.messages.create(body=body, from_=from_num, to=to_num)
-        Logger.info('TwilioClient', 'send_message', 'Successfully sent message, "{body}" ,  to to {to_num} from {from_num}'.format(body=body, to_num=to_num, from_num=from_num))
+        Logger.info('TwilioClient', 'send_message', 'Successfully sent message, "{body}" , to {to_num} from {from_num}'.format(body=body, to_num=to_num, from_num=from_num))
         
         
     def send_batch_of_messages(self, batch:typing.List[str], from_num:str, to_num:str):

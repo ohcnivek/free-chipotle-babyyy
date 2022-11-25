@@ -40,6 +40,7 @@ TEST_NUMBER = '+1XXXXXXXXXX'
 ### Background
 
 #### Twitter API
+
 This script uses Twilio + Twitter's developer API. To get set up, you'll need a general understanding of how streams work (specifically for Twitter in our case).
 
 Long story short, imagine this stream is a real-time firehose of data (tweets) from Twitter that is feeding into our app. Now without any filters that would be way too many tweets for us to consume & do anything useful.
@@ -52,8 +53,9 @@ To add these filters (aka rules), use `twitter_data_stream.add_or_delete_rule(bo
 
 Check out more about Twitter's filtered stream [here!](https://developer.twitter.com/en/docs/twitter-api/tweets/filtered-stream/introduction)
 
-### Heuristic for finding promo code in the tweet 
-I just looked for words in the tweet that's either all caps or just numbers of even better both lol :) 
+### Heuristic for finding promo code in the tweet
+
+I just looked for words in the tweet that's either all caps or just numbers of even better both lol :)
 
 Once you successfuly:
 
@@ -81,7 +83,8 @@ The output should look something like this:
 -- TwitterDataStream : digest_tweet_stream() -- Opening HTTP Connection...
 -- TwitterDataStream : digest_tweet_stream() -- STATUS CODE -- 200
 ```
-Then, tweet from your account the following: 
+
+Then, tweet from your account the following:
 "promo code PROMOCODE PROMOCODE2019 2019"
 
 Now, once you tweet from your account, you should get a series of messages to your phone number (or whatever number you put down as `TEST_NUMBER` in `main.py`).
@@ -107,17 +110,17 @@ $ python main.py
 -- TwitterDataStream : digest_tweet_stream() -- Opening HTTP Connection...
 -- TwitterDataStream : digest_tweet_stream() -- STATUS CODE -- 200
 -- TwilioClient : send_batch_messages() -- Sending batch message to YOUR-NUMBER from YOUR-TWILIO-NUMBER
--- TwilioClient : send_message() -- Successfully sent message, "PROMOCODE" ,  to to YOUR-NUMBER from + YOUR-TWILIO-NUMBER
--- TwilioClient : send_message() -- Successfully sent message, "PROMOCODE2019" ,  to to YOUR-NUMBER from + YOUR-TWILIO-NUMBER
+-- TwilioClient : send_message() -- Successfully sent message, "PROMOCODE" ,  to YOUR-NUMBER from + YOUR-TWILIO-NUMBER
+-- TwilioClient : send_message() -- Successfully sent message, "PROMOCODE2019" ,  to YOUR-NUMBER from + YOUR-TWILIO-NUMBER
 -- TwilioClient : send_message() -- Successfully sent message, "2019" ,  to to YOUR-NUMBER from + YOUR-TWILIO-NUMBER
 ```
 
-Woohoo! 
+Woohoo!
 
 ## 'Prod' aka on Friday during the game time:
+
 1. Make sure to delete your testing rule & replace that rules with the filter on @ChipotleTweets
 2. Leave it running during the game! (i actually need to check if this is ok w/ the rates on the twitter's api but it should prob be fine)
-3. Worst case: have the twiliio number text you & you can immedidately text chipotle @ 888222 the promo code :) 
+3. Worst case: have the twiliio number text you & you can immedidately text chipotle @ 888222 the promo code :)
 
 Also, don't abuse this script. This was for fun & I have no gurantee that this will work. I just love Chipotle & Twitter & thought it would be a fun lil script to spin up ❤️ Gift some potle to your loved ones this holiday szn :)
-

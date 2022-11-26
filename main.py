@@ -131,7 +131,6 @@ class TwitterDataStream:
                 - twilio_client: TwilioClient
                     twilio client to use when sending messages 
         '''
-
         Logger.info('TwitterDataStream', 'digest_tweet_stream', 'Opening HTTP Connection...')
         with self.session.request(
             url=TWITTER_API_BASE_URL + TWITTER_API_STREAM_PARAM + '?tweet.fields=text', 
@@ -271,7 +270,6 @@ class Parser:
                     each word in this batch is considered a possible promo code. If this list is greater than 1, includes all candidates in the message for user to choose from.
                     else, include only the singular candidate in the message.  
         '''
-
         if len(candidates) == 1:
             return '\nHey there! Text {promocode} to 888222 ASAP for your free chipotle!'.format(promocode=candidates[0])
         

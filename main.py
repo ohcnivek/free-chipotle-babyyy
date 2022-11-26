@@ -12,7 +12,6 @@ load_dotenv()
 TEST_TWITTER_HANDLE = os.environ['TEST_TWITTER_HANDLE']
 TEST_NUMBER =  os.environ['TEST_NUMBER']
 
-CHIPOTLE_NUMBER = '+1888222'
 TWILIO_NUMBER =  os.environ['TWILIO_NUMBER']
 
 TWITTER_API_BASE_URL = 'https://api.twitter.com/2'
@@ -109,7 +108,7 @@ class TwilioClient:
         body =  '\nHey! Pick whichever one looks most like a promo code & text it to 888222 ASAP for your free chipotle! \n\n'
         for index, candidate in enumerate(candidates):
             body += '{index}. {candidate} \n'.format(index=index+1, candidate=candidate)
-            
+
         return body
 
 

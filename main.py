@@ -82,34 +82,11 @@ class TwilioClient:
         Logger.info('TwilioClient', 'start_message_job','Start message job to send a message to {to_nums} from {from_num}'.format(to_nums=''.join(to_nums), from_num=from_num))
         for num in to_nums:
             try:
-                message = TwilioClient.create_message_body(candidates)
+                message = Parser.create_message_body(candidates)
                 self.send_message(message, from_num, num)
             except Exception as e:
                 Logger.info('TwilioClient', 'start_message_job', 'Something went wrong sending {message}'.format(message=message))
                 Logger.got_effed(e)
-
-
-    """
-        Static methods.
-    """
-    def create_message_body(candidates:typing.List[str]):
-        '''
-            Will take in a list of candidate promo codes, and compose a coherent message to send out of it.
-
-            Parameters:
-                - candidates: List[str]
-                    each word in this batch is considered a possible promo code. If this list is greater than 1, includes all candidates in the message for user to choose from.
-                    else, include only the singular candidate in the message.  
-        '''
-
-        if len(candidates) == 1:
-            return '\nHey there! Text {promocode} to 888222 ASAP for your free chipotle!'.format(promocode=candidates[0])
-        
-        body =  '\nHey! Pick whichever one looks most like a promo code & text it to 888222 ASAP for your free chipotle! \n\n'
-        for index, candidate in enumerate(candidates):
-            body += '{index}. {candidate} \n'.format(index=index+1, candidate=candidate)
-
-        return body
 
 
 class TwitterDataStream:
@@ -259,6 +236,26 @@ class Parser:
         return candidates
 
 
+    def create_message_body(candidates:typing.List[str]):
+        '''
+            Will take in a list of candidate promo codes, and compose a coherent message to send out of it.
+
+            Parameters:
+                - candidates: List[str]
+                    each word in this batch is considered a possible promo code. If this list is greater than 1, includes all candidates in the message for user to choose from.
+                    else, include only the singular candidate in the message.  
+        '''
+
+        if len(candidates) == 1:
+            return '\nHey there! Text {promocode} to 888222 ASAP for your free chipotle!'.format(promocode=candidates[0])
+        
+        body =  '\nHey! Pick whichever one looks most like a promo code & text it to 888222 ASAP for your free chipotle! \n\n'
+        for index, candidate in enumerate(candidates):
+            body += '{index}. {candidate} \n'.format(index=index+1, candidate=candidate)
+
+        return body
+
+
     def _is_promo_tweet(text_list:typing.List[str]) -> bool:
         '''
             Context -- every tweet that is a promo will have either the word 'rates' or 'data' in the tweet.
@@ -294,14 +291,14 @@ def main():
     twilio_client = TwilioClient([TEST_NUMBER]) #
 
     ### ADDING TEST STREAM RULES: your own twitter handle (for testing), chipotle's & usmnt's
-    body = twitter_data_stream.generate_rule_json("add", rule_types=['from'], twitter_handle=TEST_TWITTER_HANDLE) 
-    twitter_data_stream.add_or_delete_rule(body)
+    # body = twitter_data_stream.generate_rule_json("add", rule_types=['from'], twitter_handle=TEST_TWITTER_HANDLE) 
+    # twitter_data_stream.add_or_delete_rule(body)
 
-    body = twitter_data_stream.generate_rule_json("add", rule_types=['from'], twitter_handle=CHIPOTLE_TWITTER_HANDLE) 
-    twitter_data_stream.add_or_delete_rule(body)
+    # body = twitter_data_stream.generate_rule_json("add", rule_types=['from'], twitter_handle=CHIPOTLE_TWITTER_HANDLE) 
+    # twitter_data_stream.add_or_delete_rule(body)
 
-    body = twitter_data_stream.generate_rule_json("add", rule_types=['from'], twitter_handle=USMNT_TWITTER_HANDLE)
-    twitter_data_stream.add_or_delete_rule(body)
+    # body = twitter_data_stream.generate_rule_json("add", rule_types=['from'], twitter_handle=USMNT_TWITTER_HANDLE)
+    # twitter_data_stream.add_or_delete_rule(body)
 
     ## FOR TESTING: DELETE TEST STREAM RULE (can use id from .get_rules() response)
     # body = twitter_data_stream.generate_rule_json("delete", ids=['1596315016944304129', '1596315023697231873']) 

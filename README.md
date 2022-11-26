@@ -94,12 +94,12 @@ The output should look something like this after validating with `twitter_data_s
 -- TwitterDataStream : digest_tweet_stream() -- STATUS CODE -- 200
 ```
 
-Then, tweet from your account the following:
+3. Then, tweet from your account the following:
 "data PROMO2019" 
 
 It's important that you include the word 'data' or 'text' to your tweet when testing (the script uses these words to evaulate if the tweet is a promotion tweet).
 
-Now, once you tweet from your account, you should get a message to your number (or whatever number you put down as `TEST_NUMBER` in `main.py`).
+4. Now, once you tweet from your account, you should get a message to your number (or whatever number you put down as `TEST_NUMBER` in `main.py`).
 
 Updated output:
 

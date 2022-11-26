@@ -136,7 +136,7 @@ $ python main.py
 Hey there! Text PROMO2019 to 888222 ASAP for your free chipotle!" , to +1YOUR_NUMBER from +1YOUR_TWILIO_NUMBER
 ```
 
-And you're good to go. You can also add some additional numbers to send reminders to if you want to spread the joy -- checkout the '''main()''' function for how to do that. 
+And you're good to go. You can also add some additional numbers to send reminders to if you want to spread the joy -- checkout the ```main()``` function for how to do that. 
 
 ## During the game time:
 

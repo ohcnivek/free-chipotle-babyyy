@@ -95,7 +95,7 @@ The output should look something like this after validating with `twitter_data_s
 ```
 
 3. Then, tweet from your account the following:
-"data PROMO2019" 
+   "data PROMO2019"
 
 It's important that you include the word 'data' or 'text' to your tweet when testing (the script uses these words to evaulate if the tweet is a promotion tweet).
 
@@ -136,12 +136,12 @@ $ python main.py
 Hey there! Text PROMO2019 to 888222 ASAP for your free chipotle!" , to +1YOUR_NUMBER from +1YOUR_TWILIO_NUMBER
 ```
 
-And you're good to go. You can also add some additional numbers to send reminders to if you want to spread the joy -- checkout the ```main()``` function for how to do that. 
+And you're good to go. You can also add some additional numbers to send reminders to if you want to spread the joy -- checkout the `main()` function for how to do that.
 
-## During the game time:
+## During the game:
 
-Just keep an eye for texts to your phone! The codes go out fast, so make sure you have your phone close by. 
+Just keep an eye for texts to your phone! The codes go out fast, so make sure you have your phone close by.
 
+## Disclaimer
 
-## Disclaimer 
 Don't abuse this script. This was for fun & I have no gurantee that this will work. I just love Chipotle & Twitter & thought it would be a fun lil script to spin up. Gift some potle to your loved ones this holiday szn :)

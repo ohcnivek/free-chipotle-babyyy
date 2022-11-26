@@ -59,9 +59,9 @@ class TwilioClient:
                 - body: str
                     body of message
                 - from_num:str
-                    number to send message from (your Twilio number)
+                    number to send message from 
                 - to_num:str 
-                    number to send message to (Chipotle's number)
+                    number to send message to
         '''
         message = self.client.messages.create(body=body, from_=from_num, to=to_num)
         Logger.info('TwilioClient', 'send_message', 'Successfully sent message, "{body}" , to {to_num} from {from_num}'.format(body=body, to_num=to_num, from_num=from_num))
@@ -97,6 +97,14 @@ class TwitterDataStream:
 
 
     def add_or_delete_rule(self, body: typing.Dict[str, object]):
+        '''
+            Add / delete a rule to/from the stream.
+            note to self: honestly could prob separate this function into two exact same functions for add_rule() & delete_rule() for clarity. eh 
+
+            Parameters:
+                - body: Dict[str, object]
+                    generate this body using generate_rule_json() 
+        '''
         response = requests.post(
             TWITTER_API_BASE_URL + TWITTER_API_STREAM_PARAM + TWITTER_API_RULES_PARAM, 
             headers=self.headers,
@@ -105,6 +113,9 @@ class TwitterDataStream:
 
 
     def get_rules(self):
+        '''
+            Fetch current active rules for stream.
+        '''
         response = requests.get(
             TWITTER_API_BASE_URL + TWITTER_API_STREAM_PARAM + TWITTER_API_RULES_PARAM, 
             headers=self.headers)
@@ -112,6 +123,15 @@ class TwitterDataStream:
 
     
     def digest_tweet_stream(self, twilio_client):
+        '''
+            1. Opens a persistent stream connection to Twitter's Filtered Stream API. 
+            2. Processes the bytes recieved via this stream & starts sending messages to clients using twilio_client. 
+
+            Parameters: 
+                - twilio_client: TwilioClient
+                    twilio client to use when sending messages 
+        '''
+
         Logger.info('TwitterDataStream', 'digest_tweet_stream', 'Opening HTTP Connection...')
         with self.session.request(
             url=TWITTER_API_BASE_URL + TWITTER_API_STREAM_PARAM + '?tweet.fields=text', 
@@ -144,7 +164,7 @@ class TwitterDataStream:
     """
     def generate_rule_json(action_type:str, *args, **kwargs):
         '''
-            Generate the body (json) to pass to Twitter's add_rule() API. 
+            Generate the body (json) to pass to Twitter's API to add or delete a rule. Pass the resulting body to add_or_delete_rule() to add/ delete rules to your stream.
 
             Parameters:
                 - action_type: str
@@ -185,8 +205,14 @@ class TwitterDataStream:
 
 
     def _gen_from_rule_value_and_tag(twitter_handle:str):
-        return {"value": "from:{twitter_handle}".format(twitter_handle=twitter_handle), "tag": "tweets from @{twitter_handle}".format(twitter_handle=twitter_handle)}
+        '''
+            Generate the json body containing the value & tag to pass to Twitter's add rule end point for from:
 
+            Parameters:
+                - twitter_handle:str
+                    user's twitter handle to filter stream by 
+        '''
+        return {"value": "from:{twitter_handle}".format(twitter_handle=twitter_handle), "tag": "tweets from @{twitter_handle}".format(twitter_handle=twitter_handle)}
                 
                 
 class Parser:

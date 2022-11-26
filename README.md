@@ -62,7 +62,7 @@ Once you successfuly:
 1. Add rule to filter by tweets from your twitter account
 2. Call `twitter_data_stream.get_rules()` and vaildate that the rules has been succesfully added
 
-The output should look something like this:
+The output should look something like this after validating with `twitter_data_stream.get_rules()`:
 
 ```
  $ python main.py
@@ -70,14 +70,24 @@ The output should look something like this:
 {
     "data": [
         {
-            "id": "1595251205235679232",
+            "id": "1596320693007925249",
             "value": "from:certifiedaf",
             "tag": "tweets from @certifiedaf"
+        },
+        {
+            "id": "1596320697701355521",
+            "value": "from:ChipotleTweets",
+            "tag": "tweets from @ChipotleTweets"
+        },
+        {
+            "id": "1596320705859276805",
+            "value": "from:USMNT",
+            "tag": "tweets from @USMNT"
         }
     ],
     "meta": {
-        "sent": "2022-11-24T04:47:29.351Z",
-        "result_count": 1
+        "sent": "2022-11-26T03:02:13.968Z",
+        "result_count": 3
     }
 }
 -- TwitterDataStream : digest_tweet_stream() -- Opening HTTP Connection...
@@ -85,9 +95,11 @@ The output should look something like this:
 ```
 
 Then, tweet from your account the following:
-"promo code PROMOCODE PROMOCODE2019 2019"
+"data PROMO2019" 
 
-Now, once you tweet from your account, you should get a series of messages to your phone number (or whatever number you put down as `TEST_NUMBER` in `main.py`).
+It's important that you include the word 'data' or 'text' to your tweet when testing (the script uses these words to evaulate if the tweet is a promotion tweet).
+
+Now, once you tweet from your account, you should get a message to your number (or whatever number you put down as `TEST_NUMBER` in `main.py`).
 
 Updated output:
 
@@ -97,30 +109,39 @@ $ python main.py
 {
     "data": [
         {
-            "id": "1595251205235679232",
+            "id": "1596320693007925249",
             "value": "from:certifiedaf",
             "tag": "tweets from @certifiedaf"
+        },
+        {
+            "id": "1596320697701355521",
+            "value": "from:ChipotleTweets",
+            "tag": "tweets from @ChipotleTweets"
+        },
+        {
+            "id": "1596320705859276805",
+            "value": "from:USMNT",
+            "tag": "tweets from @USMNT"
         }
     ],
     "meta": {
-        "sent": "2022-11-24T04:47:29.351Z",
-        "result_count": 1
+        "sent": "2022-11-26T03:02:13.968Z",
+        "result_count": 3
     }
 }
 -- TwitterDataStream : digest_tweet_stream() -- Opening HTTP Connection...
 -- TwitterDataStream : digest_tweet_stream() -- STATUS CODE -- 200
--- TwilioClient : send_batch_messages() -- Sending batch message to YOUR-NUMBER from YOUR-TWILIO-NUMBER
--- TwilioClient : send_message() -- Successfully sent message, "PROMOCODE" ,  to YOUR-NUMBER from + YOUR-TWILIO-NUMBER
--- TwilioClient : send_message() -- Successfully sent message, "PROMOCODE2019" ,  to YOUR-NUMBER from + YOUR-TWILIO-NUMBER
--- TwilioClient : send_message() -- Successfully sent message, "2019" ,  to to YOUR-NUMBER from + YOUR-TWILIO-NUMBER
+-- TwilioClient : start_message_job() -- Start message job to send a message to +16786628359 from +13466372768
+-- TwilioClient : send_message() -- Successfully sent message, "
+Hey there! Text PROMO2019 to 888222 ASAP for your free chipotle!" , to +1YOUR_NUMBER from +1YOUR_TWILIO_NUMBER
 ```
 
-Woohoo!
+And you're good to go. You can also add some additional numbers to send reminders to if you want to spread the joy -- checkout the '''main()''' function for how to do that. 
 
-## 'Prod' aka on Friday during the game time:
+## During the game time:
 
-1. Make sure to delete your testing rule & replace that rules with the filter on @ChipotleTweets
-2. Leave it running during the game! (i actually need to check if this is ok w/ the rates on the twitter's api but it should prob be fine)
-3. Worst case: have the twiliio number text you & you can immedidately text chipotle @ 888222 the promo code :)
+Just keep an eye for texts to your phone! The codes go out fast, so make sure you have your phone close by. 
 
-Also, don't abuse this script. This was for fun & I have no gurantee that this will work. I just love Chipotle & Twitter & thought it would be a fun lil script to spin up ❤️ Gift some potle to your loved ones this holiday szn :)
+
+## Disclaimer 
+Don't abuse this script. This was for fun & I have no gurantee that this will work. I just love Chipotle & Twitter & thought it would be a fun lil script to spin up. Gift some potle to your loved ones this holiday szn :)

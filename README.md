@@ -16,7 +16,7 @@ So I wrote this small script to help us who aren't as swifty on the keyboard (or
 
 ## Getting Started
 
-1. Clone repo: `git clone git@github.com:ohcnivek/free-chipotle-babyyy.git`
+1. Clone repo: `git clone https://github.com/ohcnivek/free-chipotle-babyyy.git`
 
 2. Create a .env file w/ the following + populate w/ approporiate values from Twilio + Twitter developer accounts (both are free to set up). Make sure to not add @ for the twitter handle.
 

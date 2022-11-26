@@ -291,14 +291,14 @@ def main():
     twilio_client = TwilioClient([TEST_NUMBER]) #
 
     ### ADDING TEST STREAM RULES: your own twitter handle (for testing), chipotle's & usmnt's
-    # body = twitter_data_stream.generate_rule_json("add", rule_types=['from'], twitter_handle=TEST_TWITTER_HANDLE) 
-    # twitter_data_stream.add_or_delete_rule(body)
+    body = twitter_data_stream.generate_rule_json("add", rule_types=['from'], twitter_handle=TEST_TWITTER_HANDLE) 
+    twitter_data_stream.add_or_delete_rule(body)
 
-    # body = twitter_data_stream.generate_rule_json("add", rule_types=['from'], twitter_handle=CHIPOTLE_TWITTER_HANDLE) 
-    # twitter_data_stream.add_or_delete_rule(body)
+    body = twitter_data_stream.generate_rule_json("add", rule_types=['from'], twitter_handle=CHIPOTLE_TWITTER_HANDLE) 
+    twitter_data_stream.add_or_delete_rule(body)
 
-    # body = twitter_data_stream.generate_rule_json("add", rule_types=['from'], twitter_handle=USMNT_TWITTER_HANDLE)
-    # twitter_data_stream.add_or_delete_rule(body)
+    body = twitter_data_stream.generate_rule_json("add", rule_types=['from'], twitter_handle=USMNT_TWITTER_HANDLE)
+    twitter_data_stream.add_or_delete_rule(body)
 
     ## FOR TESTING: DELETE TEST STREAM RULE (can use id from .get_rules() response)
     # body = twitter_data_stream.generate_rule_json("delete", ids=['1596315016944304129', '1596315023697231873']) 
